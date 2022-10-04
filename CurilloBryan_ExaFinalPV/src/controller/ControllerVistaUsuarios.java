@@ -102,7 +102,7 @@ public class ControllerVistaUsuarios {
 
     public void cargarDatos(int opc) {
         vistaUsu.getTblUsuarios().setDefaultRenderer(Object.class, new imageTable());
-        vistaUsu.getTblUsuarios().setRowHeight(50);
+        vistaUsu.getTblUsuarios().setRowHeight(70);
         estructuraTabla = (DefaultTableModel) vistaUsu.getTblUsuarios().getModel();
         estructuraTabla.setRowCount(0);
 
@@ -116,7 +116,7 @@ public class ControllerVistaUsuarios {
 
         i = 0;
         listaUsu.stream().sorted((x, y)
-                -> x.getNombre_Usu().compareToIgnoreCase(y.getNombre_Usu())).forEach(emp -> {
+                -> x.getPermiso_Usu().compareToIgnoreCase(y.getPermiso_Usu())).forEach(emp -> {
             estructuraTabla.addRow(new Object[8]);
             vistaUsu.getTblUsuarios().setValueAt(emp.getId_Usu(), i, 0);
             vistaUsu.getTblUsuarios().setValueAt(emp.getNombre_Usu(), i, 1);
@@ -124,7 +124,7 @@ public class ControllerVistaUsuarios {
 
             Image foto = emp.getFoto();
             if (foto != null) {
-                foto = foto.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+                foto = foto.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
                 ImageIcon icono = new ImageIcon(foto);
 
                 DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
