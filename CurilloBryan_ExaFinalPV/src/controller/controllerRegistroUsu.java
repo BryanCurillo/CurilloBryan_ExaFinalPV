@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.awt.Image;
@@ -105,91 +104,91 @@ public class controllerRegistroUsu {
 
         validaciones mivalidacion = new validaciones();
 
-//        if (validar()) {
-        //ALIMENTO
-        String nombre = vistaReg.getTxtNombre().getText(),
-                contra = vistaReg.getTxtcontrasena().getText(),
-                permiso = vistaReg.getComboPermisos().getSelectedItem().toString();
+        if (validar()) {
+            //ALIMENTO
+            String nombre = vistaReg.getTxtNombre().getText().toUpperCase(),
+                    contra = vistaReg.getTxtcontrasena().getText(),
+                    permiso = vistaReg.getComboPermisos().getSelectedItem().toString().toUpperCase();
 
-        int colorAux = vistaReg.getLblFoto().getBackground().hashCode(),
-                colorAux2 = 0;
+            int colorAux = vistaReg.getLblFoto().getBackground().hashCode(),
+                    colorAux2 = 0;
 
-        modelUsuario usu = new modelUsuario();
-        usu.setNombre_Usu(nombre);
-        usu.setContra_Usu(contra);
-        usu.setPermiso_Usu(permiso);
-        usu.setEstado_Usu(true);
+            modelUsuario usu = new modelUsuario();
+            usu.setNombre_Usu(nombre);
+            usu.setContra_Usu(contra);
+            usu.setPermiso_Usu(permiso);
+            usu.setEstado_Usu(true);
 
-        try {
-            FileInputStream img = new FileInputStream(jfc.getSelectedFile());
-            int largo = (int) jfc.getSelectedFile().length();
-            usu.setImageFile(img);
-            usu.setTamano(largo);
+            try {
+                FileInputStream img = new FileInputStream(jfc.getSelectedFile());
+                int largo = (int) jfc.getSelectedFile().length();
+                usu.setImageFile(img);
+                usu.setTamano(largo);
 
-            colorAux2 = vistaReg.getLblFoto().getBackground().hashCode() + 2;
+                colorAux2 = vistaReg.getLblFoto().getBackground().hashCode() + 2;
 
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(controllerRegistroUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (NullPointerException e) {
-            colorAux2 = vistaReg.getLblFoto().getBackground().hashCode();
-        }
-
-        if (vistaReg.getName().equals("Registro")) {
-            int response = JOptionPane.showConfirmDialog(vistaReg, "¿Agregar Animal?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (response == JOptionPane.YES_OPTION) {
-
-                if (colorAux != colorAux2) {
-                    System.out.println("registro1");
-                    if (usu.setFotoUsuario()) {
-                        System.out.println("CON FOTO");
-                        ban = true;
-                    }
-                } else {
-                    if (usu.setUsuario()) {
-                        System.out.println("SIN FOTO");
-                        ban = true;
-                    }
-                }
-
-                if (ban) {
-                    JOptionPane.showMessageDialog(vistaReg, "Usuario agregado/a correctamente");
-                    vistaReg.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(vistaReg, "No se pudo agregar el Usuario");
-                }
-            }
-        } else {
-            //UPDATE
-            int id = Integer.parseInt(vistaReg.getTxtidUsu().getText());
-            usu.setId_Usu(id);
-            int response = JOptionPane.showConfirmDialog(vistaReg, "¿Seguro que desea actualizar los datos del usuario?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (response == JOptionPane.YES_OPTION) {
-                if (colorAux != colorAux2) {
-                    System.out.println("registro1");
-                    if (usu.updateFotoUsuario()) {
-                        System.out.println("CON FOTO");
-                        ban = true;
-                    }
-                } else {
-                    if (usu.updateUsuario()) {
-                        System.out.println("SIN FOTO");
-                        ban = true;
-                    }
-                }
-                if (ban) {//Grabamos
-                    JOptionPane.showMessageDialog(vistaReg, "Usuario actualizado correctamente");
-                    vistaReg.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(vistaReg, "No se pudo actualizar a los datos del usuario");
-                }
+            } catch (IOException ex) {
+                java.util.logging.Logger.getLogger(controllerRegistroUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            } catch (NullPointerException e) {
+                colorAux2 = vistaReg.getLblFoto().getBackground().hashCode();
             }
 
+            if (vistaReg.getName().equals("Registro")) {
+                int response = JOptionPane.showConfirmDialog(vistaReg, "¿Agregar Animal?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+
+                    if (colorAux != colorAux2) {
+                        System.out.println("registro1");
+                        if (usu.setFotoUsuario()) {
+                            System.out.println("CON FOTO");
+                            ban = true;
+                        }
+                    } else {
+                        if (usu.setUsuario()) {
+                            System.out.println("SIN FOTO");
+                            ban = true;
+                        }
+                    }
+
+                    if (ban) {
+                        JOptionPane.showMessageDialog(vistaReg, "Usuario agregado/a correctamente");
+                        vistaReg.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(vistaReg, "No se pudo agregar el Usuario");
+                    }
+                }
+            } else {
+                //UPDATE
+                int id = Integer.parseInt(vistaReg.getTxtidUsu().getText());
+                usu.setId_Usu(id);
+                int response = JOptionPane.showConfirmDialog(vistaReg, "¿Seguro que desea actualizar los datos del usuario?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    if (colorAux != colorAux2) {
+                        System.out.println("registro1");
+                        if (usu.updateFotoUsuario()) {
+                            System.out.println("CON FOTO");
+                            ban = true;
+                        }
+                    } else {
+                        if (usu.updateUsuario()) {
+                            System.out.println("SIN FOTO");
+                            ban = true;
+                        }
+                    }
+                    if (ban) {//Grabamos
+                        JOptionPane.showMessageDialog(vistaReg, "Usuario actualizado correctamente");
+                        vistaReg.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(vistaReg, "No se pudo actualizar a los datos del usuario");
+                    }
+                }
+
+            }
+            if (banvista) {
+                ControllerVistaUsuarios controlAni = new ControllerVistaUsuarios(vistaUsu, modelUsu);
+                controlAni.cargarDatos(1);
+            }
         }
-        if (banvista) {
-            ControllerVistaUsuarios controlAni = new ControllerVistaUsuarios(vistaUsu, modelUsu);
-            controlAni.cargarDatos(1);
-        }
-        //            }
     }
 
     public boolean llenarDatos() {
@@ -232,5 +231,27 @@ public class controllerRegistroUsu {
         vistaReg.getTxtNombre().setText("");
         vistaReg.getTxtcontrasena().setText("");
         vistaReg.getComboPermisos().setSelectedIndex(0);
+    }
+
+    public boolean validar() {
+        boolean ban = true;
+        validaciones mivalidacion = new validaciones();
+
+        if (vistaReg.getComboPermisos().getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(vistaReg, "SELECCIONE UN PERMISO");
+            ban = false;
+        }
+
+        if (vistaReg.getTxtNombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(vistaReg, "INGRESE UN NOMBRE CORTO");
+            ban = false;
+        }
+
+        if (vistaReg.getTxtcontrasena().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(vistaReg, "INGRESE UNA CONTRASEÑA");
+            ban = false;
+        }
+
+        return ban;
     }
 }
