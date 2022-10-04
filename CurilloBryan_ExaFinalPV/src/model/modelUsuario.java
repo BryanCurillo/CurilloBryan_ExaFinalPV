@@ -57,7 +57,7 @@ public class modelUsuario extends usuario {
 
     public boolean updateUsuario() {
         String sql = "UPDATE usuario  "
-                + "	SET us_nombre=?, us_contra=?, us_permiso=? "
+                + "	SET us_nombre='"+getNombre_Usu()+"', us_contra='"+getContra_Usu()+"', us_permiso='"+getPermiso_Usu()+"' "
                 + "	WHERE us_id=" + getId_Usu();
 
         return mpgc.accion(sql);

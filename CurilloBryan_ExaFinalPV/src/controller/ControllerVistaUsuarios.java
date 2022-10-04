@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
-import view.viewUsuario1;
+import view.viewUsuario;
 import model.modelUsuario;
 import javax.swing.table.DefaultTableModel;
 import model.modelPGconexion;
@@ -28,16 +24,11 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import view.viewPantallaPrincipal;
 import view.viewRegistroUsu;
-import view.viewRegistroUsu;
 
-/**
- *
- * @author ALEJO
- */
 public class ControllerVistaUsuarios {
 
     private viewPantallaPrincipal vistaP;
-    private viewUsuario1 vistaUsu;
+    private viewUsuario vistaUsu;
     private controllerPantallaPrincipal controllerpp;
     private modelUsuario modeloUsu;
 
@@ -49,12 +40,12 @@ public class ControllerVistaUsuarios {
     public ControllerVistaUsuarios() {
     }
 
-    public ControllerVistaUsuarios(viewUsuario1 vistaUsu, modelUsuario modeloUsu) {
+    public ControllerVistaUsuarios(viewUsuario vistaUsu, modelUsuario modeloUsu) {
         this.vistaUsu = vistaUsu;
         this.modeloUsu = modeloUsu;
     }
 
-    public ControllerVistaUsuarios(viewPantallaPrincipal vistaP, viewUsuario1 vistaUsu, modelUsuario modeloUsu) {
+    public ControllerVistaUsuarios(viewPantallaPrincipal vistaP, viewUsuario vistaUsu, modelUsuario modeloUsu) {
         this.vistaP = vistaP;
         this.vistaUsu = vistaUsu;
         this.modeloUsu = modeloUsu;
@@ -63,13 +54,13 @@ public class ControllerVistaUsuarios {
     }
 
     public void inicialControl() {
-        vistaUsu.getBtnAgregarCliente().addActionListener(l -> abrirRegistro(1));
-//        vistaUsu.getjBtnModificarAnimal().addActionListener(l -> abrirRegistro(2));
-//        vistaUsu.getjBtnEliminarAnimal().addActionListener(l -> eliminarAlimento());
-//        vistaUsu.getTxtbuscarAnimal().addKeyListener(busquedaIncren);
+        vistaUsu.getBtnAgregarUsuario().addActionListener(l -> abrirRegistro(1));
+        vistaUsu.getBtnModificarUsuario().addActionListener(l -> abrirRegistro(2));
+        vistaUsu.getBtnEliminarUsuario().addActionListener(l -> eliminarAlimento());
+        vistaUsu.getTxtbuscar().addKeyListener(busquedaIncren);
     }
 
-    public void abrirRegistro(int op) {
+    public void abrirRegistro(int op) {       
         modelUsuario modeloUsu = new modelUsuario();
         viewRegistroUsu vistaRegistroUsu = new viewRegistroUsu();
 
@@ -82,7 +73,7 @@ public class ControllerVistaUsuarios {
 
         } else {
             controllerRegistroUsu controladorUsu = new controllerRegistroUsu(vistaRegistroUsu, modeloUsu, vistaUsu);
-            int fila = vistaUsu.getjTblCliente().getSelectedRow();
+            int fila = vistaUsu.getTblUsuarios().getSelectedRow();
             if (fila == -1) {
                 JOptionPane.showMessageDialog(null, "Seleccione el usuario a modificar");
             } else {
@@ -109,9 +100,9 @@ public class ControllerVistaUsuarios {
     };
 
     public void cargarDatos(int opc) {
-        vistaUsu.getjTblCliente().setDefaultRenderer(Object.class, new imageTable());
-        vistaUsu.getjTblCliente().setRowHeight(50);
-        estructuraTabla = (DefaultTableModel) vistaUsu.getjTblCliente().getModel();
+        vistaUsu.getTblUsuarios().setDefaultRenderer(Object.class, new imageTable());
+        vistaUsu.getTblUsuarios().setRowHeight(50);
+        estructuraTabla = (DefaultTableModel) vistaUsu.getTblUsuarios().getModel();
         estructuraTabla.setRowCount(0);
 
         List<usuario> listaUsu;
@@ -122,14 +113,13 @@ public class ControllerVistaUsuarios {
             listaUsu = modeloUsu.getUsuarios(busqueda);
         }
 
-//        Holder<Integer> i = new Holder<>(0);
         i = 0;
         listaUsu.stream().sorted((x, y)
                 -> x.getNombre_Usu().compareToIgnoreCase(y.getNombre_Usu())).forEach(emp -> {
             estructuraTabla.addRow(new Object[8]);
-            vistaUsu.getjTblCliente().setValueAt(emp.getId_Usu(), i, 0);
-            vistaUsu.getjTblCliente().setValueAt(emp.getNombre_Usu(), i, 1);
-            vistaUsu.getjTblCliente().setValueAt(emp.getPermiso_Usu(), i, 2);
+            vistaUsu.getTblUsuarios().setValueAt(emp.getId_Usu(), i, 0);
+            vistaUsu.getTblUsuarios().setValueAt(emp.getNombre_Usu(), i, 1);
+            vistaUsu.getTblUsuarios().setValueAt(emp.getPermiso_Usu(), i, 2);
 
             Image foto = emp.getFoto();
             if (foto != null) {
@@ -138,9 +128,9 @@ public class ControllerVistaUsuarios {
 
                 DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
                 dtcr.setIcon(icono);
-                vistaUsu.getjTblCliente().setValueAt(new JLabel(icono), i, 7);
+                vistaUsu.getTblUsuarios().setValueAt(new JLabel(icono), i, 3);
             } else {
-                vistaUsu.getjTblCliente().setValueAt(null, i, 7);
+                vistaUsu.getTblUsuarios().setValueAt(null, i, 3);
             }
             i++;
         });
@@ -149,13 +139,13 @@ public class ControllerVistaUsuarios {
 
     public void eliminarAlimento() {
         modelUsuario animal = new modelUsuario();
-        int fila = vistaUsu.getjTblCliente().getSelectedRow();
+        int fila = vistaUsu.getTblUsuarios().getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione el usuario a eliminar");
         } else {
             int response = JOptionPane.showConfirmDialog(vistaUsu, "¿Esta seguro de eliminar al usuario?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
-                int id = Integer.parseInt(vistaUsu.getjTblCliente().getValueAt(fila, 0).toString());
+                int id = Integer.parseInt(vistaUsu.getTblUsuarios().getValueAt(fila, 0).toString());
 
                 if (animal.deleteUsuario(id)) {//Grabamos
                     JOptionPane.showMessageDialog(vistaUsu, "Usuario eliminado correctamente");
@@ -183,7 +173,7 @@ public class ControllerVistaUsuarios {
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());//llena el reporte con datos.
             JasperViewer jv = new JasperViewer(jp, false);
             
-            if (vistaUsu.getjTblCliente().getRowCount() != 0) {
+            if (vistaUsu.getTblUsuarios().getRowCount() != 0) {
                 jv.setVisible(true);
 
             }

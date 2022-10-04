@@ -43,6 +43,9 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
         comboPermisos = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
         txtcontrasena = new javax.swing.JPasswordField();
+        txtidUsu = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("REGISTRO DE USUARIOS");
@@ -88,10 +91,15 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
-                        .addComponent(comboPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(72, 72, 72)
+                                .addComponent(jLabel2)
+                                .addGap(12, 12, 12)
+                                .addComponent(comboPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(txtidUsu)))
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -114,9 +122,12 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtidUsu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,7 +140,6 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(comboPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnExaminarFoto)))
@@ -137,7 +147,7 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,6 +166,7 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtcontrasena;
+    private javax.swing.JLabel txtidUsu;
     // End of variables declaration//GEN-END:variables
 
     public JButton getBtnCancelar() {
@@ -246,6 +257,14 @@ public class viewRegistroUsu extends javax.swing.JInternalFrame {
 
     public void setTxtNombre(JTextField txtNombre) {
         this.txtNombre = txtNombre;
+    }
+
+    public JLabel getTxtidUsu() {
+        return txtidUsu;
+    }
+
+    public void setTxtidUsu(JLabel txtidUsu) {
+        this.txtidUsu = txtidUsu;
     }
 
 

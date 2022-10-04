@@ -6,7 +6,7 @@ package controller;
 
 import view.viewPantallaPrincipal;
 import view.viewRegistroUsu;
-import view.viewUsuario1;
+import view.viewUsuario;
 import model.modelUsuario;
 
 /**
@@ -40,7 +40,7 @@ public class controllerPantallaPrincipal {
 
     public void vistaUsuario() {
         //Instancio las clases del modelo y la vista    
-        viewUsuario1 vistaUsu = new viewUsuario1();
+        viewUsuario vistaUsu = new viewUsuario();
         viewRegistroUsu vistaRusu = new viewRegistroUsu();
         modelUsuario modelUsu = new modelUsuario();
         vistaPP.getjDesktopPane1().add(vistaUsu);

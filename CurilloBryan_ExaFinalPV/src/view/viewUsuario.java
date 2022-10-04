@@ -5,7 +5,6 @@
 package view;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,12 +15,12 @@ import javax.swing.JToolBar;
  *
  * @author Bryan
  */
-public class viewUsuario1 extends javax.swing.JInternalFrame {
+public class viewUsuario extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form viewVistaCliente
+     * Creates new form viewUsuario
      */
-    public viewUsuario1() {
+    public viewUsuario() {
         initComponents();
     }
 
@@ -34,10 +33,7 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton1 = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblUsuarios = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         btnAgregarUsuario = new javax.swing.JButton();
@@ -52,56 +48,23 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
         jSeparator6 = new javax.swing.JToolBar.Separator();
         jBtnBuscarCliente = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JToolBar.Separator();
-        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblUsuarios = new javax.swing.JTable();
 
-        jToggleButton1.setText("jToggleButton1");
-
-        setBackground(new java.awt.Color(210, 215, 159));
-        setBorder(null);
         setClosable(true);
-        setOpaque(true);
-        setPreferredSize(new java.awt.Dimension(970, 654));
-        setRequestFocusEnabled(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel4.setBackground(new java.awt.Color(250, 112, 112));
         jLabel4.setFont(new java.awt.Font("MS Gothic", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(61, 131, 97));
         jLabel4.setText("VISTA DE USUARIOS");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 450, 50));
 
-        tblUsuarios.setBackground(new java.awt.Color(255, 253, 227));
-        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Id", "Nombre", "Foto"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tblUsuarios);
-
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 178, 710, 420));
-
-        jToolBar1.setBackground(new java.awt.Color(210, 215, 159));
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jToolBar1.setBorderPainted(false);
         jToolBar1.add(jSeparator1);
 
         btnAgregarUsuario.setBackground(new java.awt.Color(210, 215, 159));
         btnAgregarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnAgregarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/invitacion.png"))); // NOI18N
         btnAgregarUsuario.setText("AGREGAR");
         btnAgregarUsuario.setBorder(null);
         btnAgregarUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -116,7 +79,6 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
 
         BtnModificarUsuario.setBackground(new java.awt.Color(210, 215, 159));
         BtnModificarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BtnModificarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario (7).png"))); // NOI18N
         BtnModificarUsuario.setText("MODIFICAR");
         BtnModificarUsuario.setBorder(null);
         BtnModificarUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -126,7 +88,6 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
 
         btnEliminarUsuario.setBackground(new java.awt.Color(210, 215, 159));
         btnEliminarUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnEliminarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar-usuario (1).png"))); // NOI18N
         btnEliminarUsuario.setText("ELIMINAR");
         btnEliminarUsuario.setBorder(null);
         btnEliminarUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -136,7 +97,6 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
 
         jBtnImprimirUsuario.setBackground(new java.awt.Color(210, 215, 159));
         jBtnImprimirUsuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnImprimirUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/documentos.png"))); // NOI18N
         jBtnImprimirUsuario.setText("IMPRIMIR REPORTE");
         jBtnImprimirUsuario.setBorder(null);
         jBtnImprimirUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -154,7 +114,6 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
 
         jBtnBuscarCliente.setBackground(new java.awt.Color(210, 215, 159));
         jBtnBuscarCliente.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jBtnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar (3).png"))); // NOI18N
         jBtnBuscarCliente.setText("BUSCAR");
         jBtnBuscarCliente.setBorder(null);
         jBtnBuscarCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -162,11 +121,59 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
         jToolBar1.add(jBtnBuscarCliente);
         jToolBar1.add(jSeparator8);
 
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 100, 700, -1));
+        tblUsuarios.setBackground(new java.awt.Color(255, 253, 227));
+        tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id", "Nombre", "", "Foto"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
 
-        jLabel2.setBackground(new java.awt.Color(210, 215, 159));
-        jLabel2.setOpaque(true);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 630));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblUsuarios);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 4, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 70, Short.MAX_VALUE)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 382, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +189,6 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminarUsuario;
     private javax.swing.JButton jBtnBuscarCliente;
     private javax.swing.JButton jBtnImprimirUsuario;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;
@@ -192,34 +198,33 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
     private javax.swing.JToolBar.Separator jSeparator8;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtbuscar;
     // End of variables declaration//GEN-END:variables
 
-    public JButton getBtnModificarCliente() {
+    public JButton getBtnModificarUsuario() {
         return BtnModificarUsuario;
     }
 
-    public void setBtnModificarCliente(JButton BtnModificarCliente) {
-        this.BtnModificarUsuario = BtnModificarCliente;
+    public void setBtnModificarUsuario(JButton BtnModificarUsuario) {
+        this.BtnModificarUsuario = BtnModificarUsuario;
     }
 
-    public JButton getBtnAgregarCliente() {
+    public JButton getBtnAgregarUsuario() {
         return btnAgregarUsuario;
     }
 
-    public void setBtnAgregarCliente(JButton btnAgregarCliente) {
-        this.btnAgregarUsuario = btnAgregarCliente;
+    public void setBtnAgregarUsuario(JButton btnAgregarUsuario) {
+        this.btnAgregarUsuario = btnAgregarUsuario;
     }
 
-    public JButton getBtnEliminarCliente() {
+    public JButton getBtnEliminarUsuario() {
         return btnEliminarUsuario;
     }
 
-    public void setBtnEliminarCliente(JButton btnEliminarCliente) {
-        this.btnEliminarUsuario = btnEliminarCliente;
+    public void setBtnEliminarUsuario(JButton btnEliminarUsuario) {
+        this.btnEliminarUsuario = btnEliminarUsuario;
     }
 
     public JButton getjBtnBuscarCliente() {
@@ -230,12 +235,20 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
         this.jBtnBuscarCliente = jBtnBuscarCliente;
     }
 
-    public JButton getjBtnImprimirCliente() {
+    public JButton getjBtnImprimirUsuario() {
         return jBtnImprimirUsuario;
     }
 
-    public void setjBtnImprimirCliente(JButton jBtnImprimirCliente) {
-        this.jBtnImprimirUsuario = jBtnImprimirCliente;
+    public void setjBtnImprimirUsuario(JButton jBtnImprimirUsuario) {
+        this.jBtnImprimirUsuario = jBtnImprimirUsuario;
+    }
+
+    public JLabel getjLabel4() {
+        return jLabel4;
+    }
+
+    public void setjLabel4(JLabel jLabel4) {
+        this.jLabel4 = jLabel4;
     }
 
     public JScrollPane getjScrollPane1() {
@@ -278,20 +291,28 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
         this.jSeparator4 = jSeparator4;
     }
 
-    public JTable getjTblCliente() {
-        return tblUsuarios;
+    public JToolBar.Separator getjSeparator5() {
+        return jSeparator5;
     }
 
-    public void setjTblCliente(JTable jTblCliente) {
-        this.tblUsuarios = jTblCliente;
+    public void setjSeparator5(JToolBar.Separator jSeparator5) {
+        this.jSeparator5 = jSeparator5;
     }
 
-    public JTextField getjTextField1() {
-        return txtbuscar;
+    public JToolBar.Separator getjSeparator6() {
+        return jSeparator6;
     }
 
-    public void setjTextField1(JTextField jTextField1) {
-        this.txtbuscar = jTextField1;
+    public void setjSeparator6(JToolBar.Separator jSeparator6) {
+        this.jSeparator6 = jSeparator6;
+    }
+
+    public JToolBar.Separator getjSeparator8() {
+        return jSeparator8;
+    }
+
+    public void setjSeparator8(JToolBar.Separator jSeparator8) {
+        this.jSeparator8 = jSeparator8;
     }
 
     public JToolBar getjToolBar1() {
@@ -302,6 +323,14 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
         this.jToolBar1 = jToolBar1;
     }
 
+    public JTable getTblUsuarios() {
+        return tblUsuarios;
+    }
+
+    public void setTblUsuarios(JTable tblUsuarios) {
+        this.tblUsuarios = tblUsuarios;
+    }
+
     public JTextField getTxtbuscar() {
         return txtbuscar;
     }
@@ -309,5 +338,9 @@ public class viewUsuario1 extends javax.swing.JInternalFrame {
     public void setTxtbuscar(JTextField txtbuscar) {
         this.txtbuscar = txtbuscar;
     }
+
+
+
+
 
 }

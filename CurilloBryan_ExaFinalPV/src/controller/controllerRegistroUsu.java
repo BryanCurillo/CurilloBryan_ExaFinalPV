@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controller;
 
 import java.awt.Image;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
@@ -22,9 +14,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import view.viewRegistroUsu;
-import view.viewPantallaPrincipal;
-import view.viewUsuario1;
+import view.viewUsuario;
 import model.modelUsuario;
+import model.usuario;
 
 /**
  *
@@ -37,30 +29,29 @@ public class controllerRegistroUsu {
     private boolean banvista = false;
     DefaultTableModel estructuraTabla;
     private JFileChooser jfc;
-    private viewUsuario1 vistaUsu;
+    private viewUsuario vistaUsu;
 
     public controllerRegistroUsu(viewRegistroUsu vistaReg, modelUsuario modelUsu) {
         this.vistaReg = vistaReg;
         this.modelUsu = modelUsu;
         vistaReg.toFront();
         vistaReg.setVisible(true);
-        banvista=false;
+        banvista = false;
     }
 
-    public controllerRegistroUsu(viewRegistroUsu vistaReg, modelUsuario modelUsu, viewUsuario1 vistaUsu) {
+    public controllerRegistroUsu(viewRegistroUsu vistaReg, modelUsuario modelUsu, viewUsuario vistaUsu) {
         this.vistaReg = vistaReg;
         this.modelUsu = modelUsu;
         this.vistaUsu = vistaUsu;
         vistaReg.toFront();
-        vistaReg.setVisible(true);  
+        vistaReg.setVisible(true);
         banvista = true;
     }
-    
-    
 
     public void inicialControl() {
         vistaReg.getBtnRegistro().addActionListener(l -> registrarActualizar());
         vistaReg.getBtnExaminarFoto().addActionListener(l -> examinarFoto());
+        vistaReg.getBtnCancelar().addActionListener(l -> vistaReg.dispose());
 
     }
 
@@ -81,7 +72,6 @@ public class controllerRegistroUsu {
                 vistaReg.getLblFoto().updateUI();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(vistaReg, "El archivo de imagen esta corrupto", "Ha ocurrido un error", 2);
-//                Logger.getLogger(ControllerRegistroEmpleado.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NullPointerException n) {
                 JOptionPane.showMessageDialog(vistaReg, "El archivo de imagen esta corrupto", "Ha ocurrido un error", 2);
             }
@@ -92,24 +82,21 @@ public class controllerRegistroUsu {
         vistaReg.toFront();
         vistaReg.getLblFoto().setIcon(null);
         String titulo;
-//        cargarComboRol();
         if (op == 1) {
-//            limpiarCampos();
+            limpiarDatos();
             titulo = "Crear";
             vistaReg.setName("Registro");
             vistaReg.getBtnRegistro().setText("REGISTRAR");
             vistaReg.setVisible(true);
             this.inicialControl();
-//            abrirRegistroEmpleado();
         } else {
-//            titulo = "Editar";
-//            if (llenarDatos()) {
-//                vistaReg.setName("Editar");
-//                vistaReg.getBtnAgregar().setText("ACTUALIZAR");
-//                vistaReg.setVisible(true);
-//                this.inicialControl();
-////                abrirRegistroEmpleado();
-//            }
+            titulo = "Editar";
+            if (llenarDatos()) {
+                vistaReg.setName("Editar");
+                vistaReg.getBtnRegistro().setText("ACTUALIZAR");
+                vistaReg.setVisible(true);
+                this.inicialControl();
+            }
         }
     }
 
@@ -127,19 +114,18 @@ public class controllerRegistroUsu {
         int colorAux = vistaReg.getLblFoto().getBackground().hashCode(),
                 colorAux2 = 0;
 
-        modelUsuario modelusu = new modelUsuario();
-        modelusu.setNombre_Usu(nombre);
-        modelusu.setContra_Usu(contra);
-        modelusu.setPermiso_Usu(permiso);
-        modelusu.setEstado_Usu(true);
+        modelUsuario usu = new modelUsuario();
+        usu.setNombre_Usu(nombre);
+        usu.setContra_Usu(contra);
+        usu.setPermiso_Usu(permiso);
+        usu.setEstado_Usu(true);
 
         try {
             FileInputStream img = new FileInputStream(jfc.getSelectedFile());
             int largo = (int) jfc.getSelectedFile().length();
-            modelusu.setImageFile(img);
-            modelusu.setTamano(largo);
-            
-            
+            usu.setImageFile(img);
+            usu.setTamano(largo);
+
             colorAux2 = vistaReg.getLblFoto().getBackground().hashCode() + 2;
 
         } catch (IOException ex) {
@@ -154,12 +140,12 @@ public class controllerRegistroUsu {
 
                 if (colorAux != colorAux2) {
                     System.out.println("registro1");
-                    if (modelusu.setFotoUsuario()) {
+                    if (usu.setFotoUsuario()) {
                         System.out.println("CON FOTO");
                         ban = true;
                     }
                 } else {
-                    if (modelusu.setUsuario()) {
+                    if (usu.setUsuario()) {
                         System.out.println("SIN FOTO");
                         ban = true;
                     }
@@ -174,42 +160,77 @@ public class controllerRegistroUsu {
             }
         } else {
             //UPDATE
-//                int id = Integer.parseInt(vistaRegAni.getTxtidAnimalNoborrar().getText());
-//                System.out.println("animal id= " + vistaRegAni.getTxtidAnimalNoborrar().getText());
-//                animal.setIdAnimal(id);
-//                int response = JOptionPane.showConfirmDialog(vistaRegAni, "¿Seguro que desea actualizar los datos del animal?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-//                if (response == JOptionPane.YES_OPTION) {
-//                    if (colorAux != colorAux2) {
-//                        System.out.println("registro1");
-//                        if (animal.updateFotoAnimal()) {
-//                            System.out.println("CON FOTO");
-//                            ban = true;
-//                        }
-//                    } else {
-//                        if (animal.updateAnimal()) {
-//                            System.out.println("SIN FOTO");
-//                            ban = true;
-//                        }
-//                    }
-//                    if (ban) {//Grabamos
-//                        JOptionPane.showMessageDialog(vistaRegAni, "Animal actualizado correctamente");
-//                        vistaRegAni.dispose();
-//                    } else {
-//                        JOptionPane.showMessageDialog(vistaRegAni, "No se pudo actualizar a los datos del animal");
-//                    }
-//                }
-//
-//                if (banvista) {
-//                    ControllerVistaAnimal controlAni = new ControllerVistaAnimal(vistaVani, modeloAni);
-//                    controlAni.cargarDatos(1);
-//                }
-////            
-//            }
+            int id = Integer.parseInt(vistaReg.getTxtidUsu().getText());
+            usu.setId_Usu(id);
+            int response = JOptionPane.showConfirmDialog(vistaReg, "¿Seguro que desea actualizar los datos del usuario?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.YES_OPTION) {
+                if (colorAux != colorAux2) {
+                    System.out.println("registro1");
+                    if (usu.updateFotoUsuario()) {
+                        System.out.println("CON FOTO");
+                        ban = true;
+                    }
+                } else {
+                    if (usu.updateUsuario()) {
+                        System.out.println("SIN FOTO");
+                        ban = true;
+                    }
+                }
+                if (ban) {//Grabamos
+                    JOptionPane.showMessageDialog(vistaReg, "Usuario actualizado correctamente");
+                    vistaReg.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(vistaReg, "No se pudo actualizar a los datos del usuario");
+                }
+            }
+
+        }
+        if (banvista) {
+            ControllerVistaUsuarios controlAni = new ControllerVistaUsuarios(vistaUsu, modelUsu);
+            controlAni.cargarDatos(1);
+        }
+        //            }
+    }
+
+    public boolean llenarDatos() {
+        int fila = vistaUsu.getTblUsuarios().getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(vistaUsu, "Seleccione el usuario a modificar");
+            return false;
+        } else {
+            int id = Integer.parseInt(vistaUsu.getTblUsuarios().getValueAt(fila, 0).toString());
+            System.out.println("llenar= " + id);
+            List<usuario> listap = modelUsu.getUsuarios("");
+            listap.stream().forEach(usu -> {
+                if (id == usu.getId_Usu()) {
+                    vistaReg.getTxtidUsu().setText(String.valueOf(usu.getId_Usu()));
+                    vistaReg.getTxtNombre().setText(usu.getNombre_Usu());
+                    vistaReg.getTxtcontrasena().setText(usu.getContra_Usu());
+                    for (int j = 0; j < vistaReg.getComboPermisos().getItemCount(); j++) {
+                        if (vistaReg.getComboPermisos().getItemAt(j).equalsIgnoreCase(usu.getPermiso_Usu())) {
+                            vistaReg.getComboPermisos().setSelectedIndex(j);
+                        }
+                    }
+                    Image foto = usu.getFoto();
+                    if (foto != null) {
+                        foto = foto.getScaledInstance(94, 101, Image.SCALE_SMOOTH);
+                        ImageIcon icono = new ImageIcon(foto);
+                        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+                        dtcr.setIcon(icono);
+                        vistaReg.getLblFoto().setIcon(icono);
+                    } else {
+                        vistaReg.getLblFoto().setIcon(null);
+                    }
+
+                }
+            });
+            return true;
         }
     }
-    
-    
-    public void limpiarDatos(){
-        
+
+    public void limpiarDatos() {
+        vistaReg.getTxtNombre().setText("");
+        vistaReg.getTxtcontrasena().setText("");
+        vistaReg.getComboPermisos().setSelectedIndex(0);
     }
 }
