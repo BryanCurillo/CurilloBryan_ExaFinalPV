@@ -120,14 +120,13 @@ public class modelUsuario extends usuario {
                 if (bytea != null) {
                     usu.setFoto(getImagen(bytea));
                 }
-                
+
                 listaUsuarios.add(usu);
             }
         } catch (SQLException | IOException ex) {
             java.util.logging.Logger.getLogger(modelUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-       
+
         try {
             rs.close();
         } catch (SQLException ex) {
@@ -135,6 +134,13 @@ public class modelUsuario extends usuario {
         }
 
         return listaUsuarios;
+    }
+
+    public boolean deleteUsuario(int id) {
+        String sql;
+        sql = "UPDATE usuario SET us_estado=false "
+                + "WHERE us_id=" + id;
+        return mpgc.accion(sql);
     }
 
 }

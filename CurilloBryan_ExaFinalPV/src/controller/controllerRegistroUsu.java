@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import view.viewRegistroUsu;
 import view.viewPantallaPrincipal;
+import view.viewUsuario1;
 import model.modelUsuario;
 
 /**
@@ -36,13 +37,26 @@ public class controllerRegistroUsu {
     private boolean banvista = false;
     DefaultTableModel estructuraTabla;
     private JFileChooser jfc;
+    private viewUsuario1 vistaUsu;
 
     public controllerRegistroUsu(viewRegistroUsu vistaReg, modelUsuario modelUsu) {
         this.vistaReg = vistaReg;
         this.modelUsu = modelUsu;
         vistaReg.toFront();
         vistaReg.setVisible(true);
+        banvista=false;
     }
+
+    public controllerRegistroUsu(viewRegistroUsu vistaReg, modelUsuario modelUsu, viewUsuario1 vistaUsu) {
+        this.vistaReg = vistaReg;
+        this.modelUsu = modelUsu;
+        this.vistaUsu = vistaUsu;
+        vistaReg.toFront();
+        vistaReg.setVisible(true);  
+        banvista = true;
+    }
+    
+    
 
     public void inicialControl() {
         vistaReg.getBtnRegistro().addActionListener(l -> registrarActualizar());

@@ -6,6 +6,7 @@ package controller;
 
 import view.viewPantallaPrincipal;
 import view.viewRegistroUsu;
+import view.viewUsuario1;
 import model.modelUsuario;
 
 /**
@@ -24,6 +25,7 @@ public class controllerPantallaPrincipal {
 
     public void inicialControl() {
         vistaPP.getMIregistroUsu().addActionListener(l -> registroUsuario());
+        vistaPP.getMIvistaUsu().addActionListener(l -> vistaUsuario());
     }
 
     public void registroUsuario() {
@@ -34,6 +36,17 @@ public class controllerPantallaPrincipal {
         vistaRusu.setName("Registro");
         controllerRegistroUsu controlRusu = new controllerRegistroUsu(vistaRusu, modelUsu);
         controlRusu.inicialControl();
+    }
+
+    public void vistaUsuario() {
+        //Instancio las clases del modelo y la vista    
+        viewUsuario1 vistaUsu = new viewUsuario1();
+        viewRegistroUsu vistaRusu = new viewRegistroUsu();
+        modelUsuario modelUsu = new modelUsuario();
+        vistaPP.getjDesktopPane1().add(vistaUsu);
+
+        ControllerVistaUsuarios controllerVistaEmpleado = new ControllerVistaUsuarios(vistaPP, vistaUsu, modelUsu);
+        controllerVistaEmpleado.inicialControl();
     }
 
 }
