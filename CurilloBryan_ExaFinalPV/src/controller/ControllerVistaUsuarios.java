@@ -58,6 +58,7 @@ public class ControllerVistaUsuarios {
         vistaUsu.getBtnModificarUsuario().addActionListener(l -> abrirRegistro(2));
         vistaUsu.getBtnEliminarUsuario().addActionListener(l -> eliminarAlimento());
         vistaUsu.getTxtbuscar().addKeyListener(busquedaIncren);
+        vistaUsu.getjBtnImprimirUsuario().addActionListener(l->imprimeReporte());
     }
 
     public void abrirRegistro(int op) {       
@@ -164,10 +165,10 @@ public class ControllerVistaUsuarios {
         JasperReport jr;
         try {
            // jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/view/reportes/ReporteAnimales.jasper"));
-           jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/view/reportes/ReporteAnimales.jasper"));
+           jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/view/reportes/ReporteUsuarios.jasper"));
             Map<String, Object> parametros = new HashMap<String, Object>();
 
-            parametros.put("titulo", "REPORTE DE ANIMALES");
+            parametros.put("titulo", "REPORTE DE USUARIOS");
             parametros.put("busqueda", vistaUsu.getTxtbuscar().getText().toLowerCase());
 
             JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getCon());//llena el reporte con datos.
