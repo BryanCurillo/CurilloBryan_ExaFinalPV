@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package curillobryan_exafinalpv;
+import view.viewPantallaPrincipal;
+import controller.controllerPantallaPrincipal;
+
 
 /**
  *
@@ -15,6 +18,9 @@ public class CurilloBryan_ExaFinalPV {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        viewPantallaPrincipal vistaPP = new viewPantallaPrincipal();
+        controllerPantallaPrincipal controlPP = new controllerPantallaPrincipal(vistaPP);
+        controlPP.inicialControl();
     }
-    
+
 }
